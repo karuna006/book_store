@@ -37,13 +37,15 @@ class BooksTable extends Table
         $this->hasOne('author', [
             'className' => 'Author',
             'foreignKey' => 'id',
-            'propertyName' => 'author_name'
+            'propertyName' => 'author_name',
+            'bindingKey'=>'author',
         ]);   
 
         $this->hasOne('publisher', [
             'className' => 'Publisher',
             'foreignKey' => 'id',
-            'propertyName' => 'publisher_name'
+            'propertyName' => 'publisher_name',
+            'bindingKey'=>'publisher'
         ]);       
     }
 
