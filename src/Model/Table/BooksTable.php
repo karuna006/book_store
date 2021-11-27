@@ -32,7 +32,19 @@ class BooksTable extends Table
 
         $this->setTable('books');
         $this->setDisplayField('title');
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('id');     
+        // $this->hasOne('Author');  
+        $this->hasOne('author', [
+            'className' => 'Author',
+            'foreignKey' => 'id',
+            'propertyName' => 'author_name'
+        ]);   
+
+        $this->hasOne('publisher', [
+            'className' => 'Publisher',
+            'foreignKey' => 'id',
+            'propertyName' => 'publisher_name'
+        ]);       
     }
 
     /**

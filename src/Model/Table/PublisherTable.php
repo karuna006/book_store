@@ -33,6 +33,13 @@ class PublisherTable extends Table
         $this->setTable('publisher');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        // public $hasMany = array(
+        //     'books'=>array(
+        //         'className'    => 'books',
+        //         'foreignKey'   => 'publisher' 
+        //     )
+        // );
     }
 
     /**

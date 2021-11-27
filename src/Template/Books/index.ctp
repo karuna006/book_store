@@ -12,6 +12,7 @@
 </nav> -->
 <div class="books index large-9 medium-8 columns content">
     <h3><?= __('Books') ?></h3>
+    <?= $this->Html->link(__('Create New Book'), ['action' => 'add']) ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -28,13 +29,16 @@
         <tbody>
             <?php 
                 $i = 1;
+                // echo "<pre>";
+                // print_r($books);
+                // echo "</pre>";
                 foreach ($books as $book): 
             ?>
             <tr>
                 <td><?= $this->Number->format($i) ?></td>
                 <td><?= h($book->title) ?></td>
-                <td><?= h($book->author) ?></td>
-                <td><?= h($book->publisher) ?></td>
+                <td><?= h($book->author_name->name) ?></td>
+                <td><?= h($book->publisher_name->name) ?></td>
                 <td><?= h($book->edition) ?></td>
                 <td><?= h($book->added_date) ?></td>                
                 <td><?php if(($book->status) == 1){ echo('Active'); } ?></td>

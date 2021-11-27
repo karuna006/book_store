@@ -32,7 +32,15 @@ class AuthorTable extends Table
 
         $this->setTable('author');
         $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('id');       
+         
+        // $this->hasMany('authorID', ['className' => 'Books']);       
+        // public $hasMany = array(
+        //     'books'=>array(
+        //         'className'    => 'books',
+        //         'foreignKey'   => 'author' 
+        //     )
+        // );
     }
 
     /**

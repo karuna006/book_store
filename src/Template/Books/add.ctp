@@ -10,13 +10,20 @@
     </ul>
 </nav> -->
 <div class="books form large-9 medium-8 columns content">
+    <?php
+        // $author = array_column($Author,'name');
+        // $publisher = array_column($publisher,'name');
+        // echo "<pre>";
+        // print_r($Author);
+        // echo "</pre>";
+    ?>
     <?= $this->Form->create($book) ?>
     <fieldset>
         <legend><?= __('Add Book') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('author');
-            echo $this->Form->control('publisher');
+            echo $this->Form->input('author',['options' => $Author ,'label' => 'Author']);
+            echo $this->Form->input('publisher',['options' => $publisher ,'label' => 'Publisher']);
             echo $this->Form->control('edition');            
         ?>
     </fieldset>
