@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2021 at 01:41 PM
+-- Generation Time: Nov 27, 2021 at 03:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -45,7 +45,7 @@ INSERT INTO `author` (`id`, `name`, `added_date`, `status`) VALUES
 (4, 'Mobile Computing', '2021-11-26 12:04:51', 0),
 (5, 'Data Structure Using C', '2021-11-26 12:04:58', 0),
 (6, 'Amit Garg ', '2021-11-26 12:11:14', 1),
-(7, 'Amit Garg', '2021-11-26 12:11:25', 1),
+(7, 'Amit Garg', '2021-11-26 12:11:25', 0),
 (8, 'Lalit Kumar', '2021-11-26 12:11:33', 1),
 (9, 'Vinay Kumar Singhal', '2021-11-26 12:11:40', 1),
 (10, 'Sharad Kumar Verma', '2021-11-26 12:11:49', 1);
@@ -59,10 +59,10 @@ INSERT INTO `author` (`id`, `name`, `added_date`, `status`) VALUES
 CREATE TABLE `books` (
   `id` int(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL,
-  `publisher` varchar(255) DEFAULT NULL,
+  `author` int(11) DEFAULT NULL,
+  `publisher` int(11) DEFAULT NULL,
   `edition` varchar(255) DEFAULT NULL,
-  `added_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `added_date` datetime DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -71,13 +71,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `author`, `publisher`, `edition`, `added_date`, `status`) VALUES
-(1, 'Sample1', 'sample2', 'sample3', 'sample4', '2021-11-26 11:07:14', 0),
-(3, 'sample data', 'rawdata', 'demo', 'sample', '2021-11-26 11:29:42', 0),
-(4, 'Amit Garg', 'Junior Level Books Introduction to Computer', 'Reader\'s Zone', '2011', '2021-11-26 11:37:23', 1),
-(5, 'Amit Garg', ' Publish News Letter', 'MCA Department, MIET Meerut', '2011', '2021-11-26 11:37:55', 1),
-(6, 'Lalit Kumar', 'Client Server Computing', 'Sun India Publications, New Delhi', '2012', '2021-11-26 11:38:26', 1),
-(7, 'Vinay Kumar Singhal', ' Mobile Computing', ' K Nath & Sons, Meerut', '2011', '2021-11-26 11:38:49', 1),
-(8, 'Sharad Kumar Verma', ' Data Structure Using C', 'Thakur Publications Lucknow', '2015', '2021-11-26 11:39:13', 1);
+(3, '1', 1, 8, '1', '2021-11-27 12:12:21', 1),
+(5, 'demo', 6, 6, 'demo', '2021-11-27 14:10:30', 1),
+(6, 'Testing', 10, 7, 'Testing', '2021-11-27 14:10:53', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +118,9 @@ ALTER TABLE `author`
 -- Indexes for table `books`
 --
 ALTER TABLE `books`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `publisher` (`publisher`);
 
 --
 -- Indexes for table `publisher`
@@ -144,13 +142,24 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `books`
+--
+ALTER TABLE `books`
+  ADD CONSTRAINT `author` FOREIGN KEY (`author`) REFERENCES `author` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `publisher` FOREIGN KEY (`publisher`) REFERENCES `publisher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
