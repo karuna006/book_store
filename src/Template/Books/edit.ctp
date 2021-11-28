@@ -21,8 +21,8 @@
         <legend><?= __('Edit Book') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('author');
-            echo $this->Form->control('publisher');
+            echo $this->Form->input('author',['options' => $Author ,'label' => 'Author']);
+            echo $this->Form->input('publisher',['options' => $publisher ,'label' => 'Publisher']);
             echo $this->Form->control('edition');            
         ?>
     </fieldset>

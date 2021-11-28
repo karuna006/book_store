@@ -63,7 +63,6 @@ class BooksController extends AppController
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
-        $this->set(compact('book'));
         
         // Get list of author
         $this->loadModel("Author");
@@ -82,8 +81,7 @@ class BooksController extends AppController
                 $author[$value['id']] = $value['name'];
             }
         }
-        $this->set('Author',$author);
-        // $this->set(compact('Author'));
+        $this->set('Author',$author);        
 
         // Get list of publisher
         $this->loadModel("publisher");
@@ -106,6 +104,7 @@ class BooksController extends AppController
 
         // $this->set('publisher', $publisher->toArray());
 
+        $this->set(compact('book'));
         $this->set('_serialize', ['book']);
     }
 
@@ -130,6 +129,45 @@ class BooksController extends AppController
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
+
+        // Get list of author
+        $this->loadModel("Author");
+        $Author = $this->Author->find('all',[
+                'conditions' => ['status !=' => 0],
+                'contain'    => [],
+                'fields' => ['id','name']
+        ]);
+
+        $author_data = $Author->toArray();
+        $author = [];
+        if(!empty($author_data))
+        {
+            foreach($author_data as $key => $value)
+            {
+                $author[$value['id']] = $value['name'];
+            }
+        }
+        $this->set('Author',$author);        
+
+        // Get list of publisher
+        $this->loadModel("publisher");
+        $Publisher = $this->publisher->find('all',[
+                'conditions' => ['status !=' => 0],
+                'contain'    => [],
+                'fields' => ['id','name']            
+        ]);
+
+        $publisher_data = $Publisher->toArray();
+        $publisher = [];
+        if(!empty($publisher_data))
+        {
+            foreach($publisher_data as $key => $value)
+            {
+                $publisher[$value['id']] = $value['name'];
+            }
+        }
+        $this->set('publisher',$publisher);
+
         $this->set(compact('book'));
         $this->set('_serialize', ['book']);
     }

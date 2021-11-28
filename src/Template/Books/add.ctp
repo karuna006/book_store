@@ -22,8 +22,8 @@
         <legend><?= __('Add Book') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->input('author',['options' => $Author ,'label' => 'Author']);
-            echo $this->Form->input('publisher',['options' => $publisher ,'label' => 'Publisher']);
+            echo $this->Form->input('author',['options' => $Author ,'label' => 'Author','default'=>$book->author]);
+            echo $this->Form->input('publisher',['options' => $publisher ,'label' => 'Publisher','default'=>$book->publisher]);
             echo $this->Form->control('edition');            
         ?>
     </fieldset>
