@@ -54,12 +54,20 @@ class AuthorTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        
+        // $validator
+        //     ->requirePresence('name', 'create')
+        //     ->notEmpty('name')
+        //     ->add('role', 'Check_author_name', [
+        //         'rule' => 'author_name_exists',
+        //         'message' => __('Sorry author name already exists'),
+        //         'provider' => 'table',
+        //     ]);            
 
         return $validator;
     }
+
+    // public function author_name_exists($value, array $context)
+    // {
+    //     return false;
+    // }
 }

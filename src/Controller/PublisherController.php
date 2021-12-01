@@ -40,10 +40,9 @@ class PublisherController extends AppController
      */
     public function view($id = null)
     {
-        $publisher = $this->paginate($this->Publisher->find('all',[
-                'conditions' => ['status !=' => 0],
-                'contain'    => []
-        ]));
+        $publisher = $this->Publisher->get($id, [
+            'contain' => []
+        ]);
 
         $this->set('publisher', $publisher);
         $this->set('_serialize', ['publisher']);

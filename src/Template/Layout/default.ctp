@@ -49,14 +49,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <nav class="large-3 medium-4 columns" id="actions-sidebar">
-            <ul class="side-nav">
-                <li class="heading"><?= __('Actions') ?></li>
-                <li><?= $this->Html->link(__('Books'), ['controller' => 'Books','action' => 'index']) ?></li>
-                <li><?= $this->Html->link(__('Author'), ['controller' => 'Author','action' => 'index']) ?></li>
-                <li><?= $this->Html->link(__('publisher'), ['controller' => 'publisher','action' => 'index']) ?></li>
-            </ul>
-        </nav>
+        <?= $this->element('sidebar'); ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>
