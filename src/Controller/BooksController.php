@@ -55,10 +55,50 @@ class BooksController extends AppController
     {
         $book = $this->Books->newEntity();
         if ($this->request->is('post')) {
-            $book = $this->Books->patchEntity($book, $this->request->getData());
-            if ($this->Books->save($book)) {
-                $this->Flash->success(__('The book has been saved.'));
 
+            // $book = $this->Books->patchEntity($book, $this->request->getData());
+            $book['title'] = $this->request->data['title'];
+            $book['author'] = $this->request->data['author'];
+            $book['publisher'] = $this->request->data['publisher'];
+            $book['edition'] = $this->request->data['edition'];
+
+            $check = 0;
+            $uploadPath = 'uploads/cover_pic/';
+            $fileName = $this->request->data['cover_pic']['name'];
+            $uploadFile = $uploadPath.$fileName;
+            if(move_uploaded_file($this->request->data['cover_pic']['tmp_name'],$uploadFile))
+            {
+                $book['cover_pic'] = $fileName;
+                $check += 1;
+            }
+
+            $uploadPath = 'uploads/files/';
+            $fileName = $this->request->data['file']['name'];
+            $uploadFile = $uploadPath.$fileName;
+            if(move_uploaded_file($this->request->data['file']['tmp_name'],$uploadFile))
+            {
+                $book['file'] = $fileName;
+                $check += 2;
+            }
+
+            if ($this->Books->save($book))
+            {
+                if($check == 3)
+                {
+                    $this->Flash->success(__('The book has been saved.'));                    
+                }
+                elseif($check == 2)
+                {
+                    $this->Flash->warning(__('The book has been saved, But File not has been saved'));
+                }
+                elseif($check == 1)
+                {
+                    $this->Flash->warning(__('The book has been saved, But Cover pic not has been saved'));
+                }
+                elseif($check == 0)
+                {
+                    $this->Flash->warning(__('The book has been saved, But files not has been saved'));
+                }
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
@@ -121,9 +161,49 @@ class BooksController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $book = $this->Books->patchEntity($book, $this->request->getData());
+            // $book = $this->Books->patchEntity($book, $this->request->getData());
+
+            $book['title'] = $this->request->data['title'];
+            $book['author'] = $this->request->data['author'];
+            $book['publisher'] = $this->request->data['publisher'];
+            $book['edition'] = $this->request->data['edition'];
+
+            $check = 0;
+            $uploadPath = 'uploads/cover_pic/';
+            $fileName = $this->request->data['cover_pic']['name'];
+            $uploadFile = $uploadPath.$fileName;
+            if(move_uploaded_file($this->request->data['cover_pic']['tmp_name'],$uploadFile))
+            {
+                $book['cover_pic'] = $fileName;
+                $check += 1;
+            }
+
+            $uploadPath = 'uploads/files/';
+            $fileName = $this->request->data['file']['name'];
+            $uploadFile = $uploadPath.$fileName;
+            if(move_uploaded_file($this->request->data['file']['tmp_name'],$uploadFile))
+            {
+                $book['file'] = $fileName;
+                $check += 2;
+            }
+
             if ($this->Books->save($book)) {
-                $this->Flash->success(__('The book has been saved.'));
+                if($check == 3)
+                {
+                    $this->Flash->success(__('The book has been saved.'));                    
+                }
+                elseif($check == 2)
+                {
+                    $this->Flash->warning(__('The book has been saved, But Cover pic not has been saved'));
+                }
+                elseif($check == 1)
+                {
+                    $this->Flash->warning(__('The book has been saved, But File not has been saved'));
+                }
+                elseif($check == 0)
+                {
+                    $this->Flash->warning(__('The book has been saved, But files not has been saved'));
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
