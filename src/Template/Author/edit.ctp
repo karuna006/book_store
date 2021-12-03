@@ -1,30 +1,39 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-?>
-<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $author->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $author->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Author'), ['action' => 'index']) ?></li>
-    </ul>
-</nav> -->
-<div class="author form large-9 medium-8 columns content">
-    <?= $this->Form->create($author) ?>
-    <fieldset>
-        <legend><?= __('Edit Author') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            // echo $this->Form->control('added_date');
-            // echo $this->Form->control('status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<?php?>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Author</h1>
+      </div>      
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Add Author</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <?= $this->Form->create($author) ?>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <?= $this->Form->control('name',['class'=>'form-control','placeholder'=>'Name','label' => false,'templates' => ['inputContainer' => '{{content}}']]) ?>                    
+                  </div>                                 
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              <?= $this->Form->end() ?>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>

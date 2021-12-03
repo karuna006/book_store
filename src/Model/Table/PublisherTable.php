@@ -54,9 +54,12 @@ class PublisherTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');      
+        $validator            
+            ->notEmpty('name');
+
+        // $validator
+        //     ->requirePresence('name', 'create')
+        //     ->notEmpty('name');      
         return $validator;
     }
 }

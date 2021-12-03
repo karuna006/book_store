@@ -39,16 +39,20 @@ class PublisherFixture extends TestFixture
     // @codingStandardsIgnoreEnd
 
     /**
-     * Records
+     * Init method
      *
-     * @var array
+     * @return void
      */
-    public $records = [
-        [
-            'id' => 1,
-            'name' => 'Lorem ipsum dolor sit amet',
-            'added_date' => '2021-11-26 11:46:41',
-            'status' => 1
-        ],
-    ];
+    public function init()
+    {
+        $this->records = [
+            [
+                'id' => 1,
+                'name' => 'Lorem ipsum dolor sit amet',
+                'added_date' => '2021-12-01 13:20:45',
+                'status' => 1
+            ],
+        ];
+        parent::init();
+    }
 }

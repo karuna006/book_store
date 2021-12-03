@@ -62,16 +62,16 @@ class BooksTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('title');
+            ->notEmpty('title');
 
         $validator
-            ->allowEmpty('author');
+            ->notEmpty('author');
 
         $validator
-            ->allowEmpty('publisher');
+            ->notEmpty('publisher');
 
         $validator
-            ->allowEmpty('edition');        
+            ->notEmpty('edition');        
 
         return $validator;
     }
