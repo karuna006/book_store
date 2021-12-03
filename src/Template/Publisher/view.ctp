@@ -1,36 +1,47 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Publisher $publisher
-  */
-?>
-<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Publisher'), ['action' => 'edit', $publisher->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Publisher'), ['action' => 'delete', $publisher->id], ['confirm' => __('Are you sure you want to delete # {0}?', $publisher->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Publisher'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Publisher'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav> -->
-<div class="publisher view large-9 medium-8 columns content">
-    <h3><?= h($publisher->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($publisher->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($publisher->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td><?= $this->Number->format($publisher->status) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Added Date') ?></th>
-            <td><?= h($publisher->added_date) ?></td>
-        </tr>
-    </table>
-</div>
+<?php?>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Publisher</h1>
+      </div>      
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-text-width"></i>
+                  Publisher - <?= h($publisher->name) ?>
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <dl class="row">
+                  <dt class="col-sm-4"><?= __('Name') ?></dt>
+                  <dd class="col-sm-8"><?= h($publisher->name) ?></dd>
+                  <dt class="col-sm-4"><?= __('Id') ?></dt>
+                  <dd class="col-sm-8"><?= h($publisher->id) ?></dd>                  
+                  <dt class="col-sm-4"><?= __('Status') ?></dt>
+                  <dd class="col-sm-8"><?= h($publisher->status) ?></dd>
+                  <dt class="col-sm-4"><?= __('Added Date') ?></dt>
+                  <dd class="col-sm-8"><?= h($publisher->added_date) ?></dd>
+                  <dt class="col-sm-4"></dt>
+                  <dd class="col-sm-8">
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $publisher->id],['class'=>'btn btn-success btn-sm']) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $publisher->id],['class'=>'btn btn-warning btn-sm'], ['confirm' => __('Are you sure you want to delete # {0}?', $publisher->id)]) ?>
+                  </dd>                  
+                </dl>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+  </div>
+</section>

@@ -54,6 +54,9 @@ class AuthorTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator            
+            ->notEmpty('name');
+
         // $validator
         //     ->requirePresence('name', 'create')
         //     ->notEmpty('name')

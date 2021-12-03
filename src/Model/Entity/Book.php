@@ -8,8 +8,10 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $title
- * @property string $author
- * @property string $publisher
+ * @property int $author
+ * @property int $publisher
+ * @property string $cover_pic
+ * @property string $file
  * @property string $edition
  * @property \Cake\I18n\FrozenTime $added_date
  * @property int $status
@@ -27,7 +29,13 @@ class Book extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'title' => true,
+        'author' => true,
+        'publisher' => true,
+        'cover_pic' => true,
+        'file' => true,
+        'edition' => true,
+        'added_date' => true,
+        'status' => true
     ];
 }
